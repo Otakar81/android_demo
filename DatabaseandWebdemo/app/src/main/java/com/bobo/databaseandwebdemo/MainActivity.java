@@ -39,20 +39,22 @@ public class MainActivity extends AppCompatActivity {
             int nameIndex = c.getColumnIndex("name");
             int ageIndex = c.getColumnIndex("age");
 
-            c.moveToFirst();
+            //c.moveToFirst();
 
             String html = "<html><head><title></title></head><body><table>";
             html += "<tr><td>Name</td><td>Age</td></tr>";
 
-            while (c != null)
+            while (c.moveToNext())
             {
                 String nome = c.getString(nameIndex);
                 int age = c.getInt(ageIndex);
 
-                html += "<tr><td>" + nome + "</td><td>" + age + "</td></tr>";
+                Log.i("Result: ", nome + "  " + age);
 
-                c.moveToNext();
+                html += "<tr><td>" + nome + "</td><td>" + age + "</td></tr>";
             }
+
+            c.close();
 
             html += "</table></body></html>";
 
